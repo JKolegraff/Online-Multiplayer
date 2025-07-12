@@ -1,0 +1,3 @@
+I need to add a layer and tag system.
+    layer order for drawing the objects
+    tag will help with object collision testing

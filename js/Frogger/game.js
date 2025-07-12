@@ -1,7 +1,11 @@
+import { map01 } from './map.js';
+import { TileMap } from './tilemap.js';
+
 export class Game {
-    constructor(ctx, assets) {
+    constructor(ctx) {
       this.ctx = ctx;
-      this.assets = assets; // sprites, tilemap, etc.
+      //this.assets = assets; // sprites, tilemap, etc.
+      this.map = new TileMap(map01);
       this.running = false;
   
       this.lastTime = 0;
@@ -31,6 +35,7 @@ export class Game {
     draw() {
       this.ctx.clearRect(0, 0, 420, 420);
       // Draw map, player, etc.
+      this.map.draw(this.ctx, .2);
       // this.assets.tileMap.draw(this.ctx);
       // this.assets.frogSprite.draw(this.ctx, x, y);
     }

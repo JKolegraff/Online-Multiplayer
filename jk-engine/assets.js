@@ -1,0 +1,1 @@
+export const assets = new (await import('./asset-manager.js')).AssetManager();

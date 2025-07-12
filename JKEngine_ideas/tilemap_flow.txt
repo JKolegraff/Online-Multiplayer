@@ -1,0 +1,12 @@
+TileMap (extends GameObject)
+│
+├── tileSize (number)          → Size of each tile (in pixels)
+├── mapWidth, mapHeight        → Grid size in tiles (e.g. 10x10)
+├── tilesData[][]              → 2D array of tile indices or IDs
+├── tiles[]                    → Array of tile definitions (position, image, etc.)
+├── spriteSheet (Image)        → Source image of the tileset
+├── tileImages[]               → Array of sub-images (cropped from spriteSheet)
+├── collisionTileIndices[]     → Indices that count as collidable tiles
+│
+├── draw(ctx)                  → Draw all tiles based on tileData
+└── buildMap()                 → Uses tileData + tileImages to generate tile objects

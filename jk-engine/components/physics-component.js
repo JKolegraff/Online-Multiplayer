@@ -1,4 +1,4 @@
-import { checkCollision } from './collision-manager.js';
+import { checkCollision } from '../collision-manager.js';
 
 export class PhysicsComponent {
   constructor() {

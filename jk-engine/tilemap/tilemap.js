@@ -1,5 +1,5 @@
 import { GameObject } from '../gameobject.js';
-import { Tile } from './tilemap/tile.js';
+import { Tile } from './Tile.js';
 import { TileMapCollider } from '../Collision/tilemapcollider.js';
 import { sliceSpriteSheet } from '../utils/spritesheet.js';
 

@@ -5,7 +5,7 @@ import { assets, loadAssets } from '../jk-engine/assets/assets.js';
 import { initEngine, addObject } from '../jk-engine/core/engine.js';
 import { GameObject } from '../jk-engine/gameobject.js';
 import { SpriteComponent } from '../jk-engine/components/sprite-component.js';
-import { TileMap } from '../jk-engine/tilemap/tilemap.js';
+import { TileMap } from '../jk-engine/Tilemap/Tilemap.js';
 
 async function main() {
   console.log('Starting game initialization...');
@@ -28,7 +28,7 @@ async function main() {
   addObject(player);
   console.log('Player object added to the game');
 
-  //const tilemap = new TileMap(mapdata, 12, 12, 200, assets.get('image', 'tilemap'), null);
+  const tilemap = new TileMap(mapdata, 12, 12, 200, assets.get('image', 'tilemap'), null);
 }
 
 

@@ -5,11 +5,13 @@ let lastTime = 0;
 export function initEngine(canvasId) {
   canvas = document.getElementById(canvasId);
   ctx = canvas.getContext("2d");
+  console.log('Engine initialized with canvas:', canvasId);
   requestAnimationFrame(gameLoop);
 }
 
 export function addObject(obj) {
   gameObjects.push(obj);
+  console.log('Object added');
 }
 
 export function getObjects() {
@@ -26,13 +28,13 @@ function gameLoop(timestamp) {
     obj.update?.(deltaTime);
   }
 
-  handleCollisions();
+  //handleCollisions();
 
   for (const obj of gameObjects) {
     obj.draw?.(ctx);
   }
-
+//console.log('Game loop running at', timestamp);
   requestAnimationFrame(gameLoop);
 }
 
-import { handleCollisions } from './collision-manager.js';
+//import { handleCollisions } from './collision-manager.js';

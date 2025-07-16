@@ -1,7 +1,7 @@
 import { GameObject } from '../gameobject.js';
 import { Tile } from './tilemap/tile.js';
 import { TileMapCollider } from '../Collision/tilemapcollider.js';
-import { sliceSpriteSheet } from '../utils/SpriteSheet.js';
+import { sliceSpriteSheet } from '../utils/spritesheet.js';
 
 export class TileMap extends GameObject {
   constructor({

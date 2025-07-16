@@ -51,6 +51,6 @@ export class AssetManager {
   }
 }
 
-export async function loadAssets() {
-  await assets.loadAll();
+export async function loadAssets(assetManager) {
+  await assetManager.loadAll();
 }

@@ -1,1 +1,7 @@
-export const assets = new (await import('./asset-manager.js')).AssetManager();
+import { AssetManager } from './asset-manager.js';
+
+export const assets = new AssetManager();
+
+export async function loadAssets() {
+  await assets.loadAll();
+}

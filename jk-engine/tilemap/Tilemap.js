@@ -10,6 +10,9 @@ export class TileMap extends GameObject {
     mapHeight,
     tileSize,
     spriteSheet,
+    frameIndex = 1,
+    frameWidth = 64,
+    frameHeight = 64,
     collisionTileIndices = [],
   }) {
     super();
@@ -19,9 +22,12 @@ export class TileMap extends GameObject {
     this.mapHeight = mapHeight;
     this.mapData = mapData; // 2D array: [row][col]
     this.spriteSheet = spriteSheet;
+    this.frameIndex = frameIndex;
+    this.frameWidth = frameWidth;
+    this.frameHeight = frameHeight;
 
     this.collisionTileIndices = new Set(collisionTileIndices);
-    this.tileImages = sliceSpriteSheet(spriteSheet, tileSize, tileSize);
+    //this.tileImages = sliceSpriteSheet(spriteSheet, tileSize, tileSize);
     this.tiles = [];
 
     this.buildMap();
@@ -39,19 +45,20 @@ export class TileMap extends GameObject {
     for (let row = 0; row < this.mapHeight; row++) {
       for (let col = 0; col < this.mapWidth; col++) {
         const tileIndex = this.mapData[row][col];
-        const x = this.x + col * this.tileSize;
-        const y = this.y + row * this.tileSize;
+        const x = this.x + col * this.frameWidth;
+        const y = this.y + row * this.frameHeight;
 
-        const image = this.tileImages[tileIndex];
+        //const image = this.tileImages[tileIndex];
+        const image = this.spriteSheet;
         const isCollidable = this.collisionTileIndices.has(tileIndex);
 
-        const tile = new Tile(x, y, this.tileSize, image, isCollidable);
+        const tile = new Tile(x, y, this.tileSize, image, tileIndex, this.frameWidth, this.frameHeight, isCollidable);
         this.tiles.push(tile);
       }
     }
   }
 
-  draw(ctx) {
-    this.tiles.forEach(tile => tile.draw(ctx));
+  draw(ctx, context) {
+    this.tiles.forEach(tile => tile.draw(ctx, context));
   }
 }

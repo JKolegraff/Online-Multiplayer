@@ -69,24 +69,25 @@ export class GameObject {
   }
 
   // ----- Update -----
-  update(deltaTime) {
-    for (const c of this.components) {
-      if (typeof c.update === 'function') {
-        c.update(deltaTime);
-      }
-    }
-
-    for (const child of this.children) {
-      child.update(deltaTime);
+update(deltaTime, context) {
+  for (const c of this.components) {
+    if (typeof c.update === 'function') {
+      // Now passes camera to components that use it
+      c.update(deltaTime, context);
     }
   }
 
+  for (const child of this.children) {
+    child.update(deltaTime, context);
+  }
+}
+
   // ----- Draw -----
-  draw(ctx, camera) {
+  draw(ctx, context) {
     if (!this.visible) return;
 
     // Convert world position to screen space
-    const screenPos = camera.worldToScreen(this.worldX, this.worldY);
+    const screenPos = context.camera.worldToScreen(this.worldX, this.worldY);
 
     // Draw components
     for (const c of this.components) {
@@ -97,7 +98,7 @@ export class GameObject {
 
     // Draw children
     for (const child of this.children) {
-      child.draw(ctx, camera);
+      child.draw(ctx, context);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { camera } from './camera.js';
+import { setCanvas, createContext } from './context.js ';
 
 let canvas, ctx;
 let gameObjects = [];
@@ -8,6 +8,10 @@ export function initEngine(canvasId) {
   canvas = document.getElementById(canvasId);
   ctx = canvas.getContext("2d");
   console.log('Engine initialized with canvas:', canvasId);
+  
+  //Set the canvas reference in context
+  setCanvas(canvas);
+
   requestAnimationFrame(gameLoop);
 }
 
@@ -24,16 +28,19 @@ function gameLoop(timestamp) {
   const deltaTime = (timestamp - lastTime) / 1000;
   lastTime = timestamp;
 
+  // Set the canvas reference in context
+  const context = new createContext();
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (const obj of gameObjects) {
-    obj.update?.(deltaTime);
+    obj.update?.(deltaTime, context);
   }
 
   //handleCollisions();
 
   for (const obj of gameObjects) {
-    obj.draw?.(ctx, camera);
+    obj.draw?.(ctx, context);
   }
 //console.log('Game loop running at', timestamp);
   requestAnimationFrame(gameLoop);

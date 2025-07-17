@@ -1,3 +1,5 @@
+import { camera } from './camera.js';
+
 let canvas, ctx;
 let gameObjects = [];
 let lastTime = 0;
@@ -31,7 +33,7 @@ function gameLoop(timestamp) {
   //handleCollisions();
 
   for (const obj of gameObjects) {
-    obj.draw?.(ctx);
+    obj.draw?.(ctx, camera);
   }
 //console.log('Game loop running at', timestamp);
   requestAnimationFrame(gameLoop);

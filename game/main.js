@@ -5,8 +5,9 @@ import { assets, loadAssets } from '../jk-engine/assets/assets.js';
 import { initEngine, addObject } from '../jk-engine/core/engine.js';
 import { GameObject } from '../jk-engine/gameobject.js';
 import { SpriteComponent } from '../jk-engine/components/sprite-component.js';
-import { TileMap } from '../jk-engine/tilemap/Tilemap.js';
+import { TileMap } from '../jk-engine/Tilemap/Tilemap.js';
 import { map01 } from './map.js';
+
 
 async function main() {
   console.log('Starting game initialization...');
@@ -23,21 +24,29 @@ async function main() {
   //  console.log('Player collided with:', other);
   //};
 
-  const playerSprite = new SpriteComponent(assets.get('image', 'tilemap'), 64, 64);
+  const playerSprite = new SpriteComponent(assets.get('image', 'tilemap'));
   player.addComponent(playerSprite);
 
   addObject(player);
-  console.log('Player object added to the game');
+  //console.log('Player object added to the game');
 
-  const tilemap = new TileMap(map01, 11, 9, 200, assets.get('image', 'tilemap'), null);
+  //console.log('image assest:', assets.get('image', 'tilemap'));
+  /*const tilemap = new TileMap({
+    mapData: map01,
+    mapWidth: 11,
+    mapHeight: 9, 
+    tileSize: 200,
+    spriteSheet: assets.get('image', 'tilemap'),
+    collisionTileIndices: null});
+
+    tilemap.buildMap();
+    console.log('Built tilemap');
+    addObject(tilemap);*/
 }
 
 
 console.log('Main script loaded');
 // Start the game after window loads
 window.addEventListener('load', main);
-//window.addEventListener('load', () => {
-  //console.log('Window load triggered'); // ← If this shows up, you're good
-  //main();
-//});
+
 

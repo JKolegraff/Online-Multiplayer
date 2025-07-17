@@ -1,13 +1,13 @@
 export class SpriteComponent {
-  constructor(image, width, height) {
+  constructor(image, width = null, height = null) {
     this.image = image;
-    this.width = width;
-    this.height = height;
+    this.width = width ?? image?.width ?? 0;
+    this.height = height ?? image?.height ?? 0;
   }
 
-  draw(ctx) {
-    if (this.image && this.parent) {
-      ctx.drawImage(this.image, this.parent.x, this.parent.y, this.width, this.height);
+  draw(ctx, x, y) {
+    if (this.image) {
+      ctx.drawImage(this.image, x, y, this.width, this.height);
     }
   }
 }
